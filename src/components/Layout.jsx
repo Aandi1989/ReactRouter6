@@ -1,13 +1,14 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { CustomLink } from './CustomLink';
 
 export const Layout = () => {
 
     return (
         <>
             <header className="text-white bg-bgColor h-16 flex justify-center items-center mb-2">
-                <NavLink className="mr-4 hover:underline aria-[current=page]:text-darkcyan" to="/">Home</NavLink>
-                <NavLink className="mr-4 hover:underline aria-[current=page]:text-darkcyan" to="/posts">Blog</NavLink>
-                <NavLink className="hover:underline aria-[current=page]:text-darkcyan" to="/about">About</NavLink>
+                <CustomLink className="mr-4 hover:underline"  to="/">Home</CustomLink>
+                <CustomLink className="mr-4 hover:underline" to="/posts">Blog</CustomLink>
+                <CustomLink className="hover:underline" to="/about">About</CustomLink>
             </header>
             <main className="pl-2">
                 <Outlet />
