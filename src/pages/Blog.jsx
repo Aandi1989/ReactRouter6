@@ -16,7 +16,7 @@ const Blog = () => {
             {
                 posts.map(post => (
                     <Link key={post.id} to={`/posts/${post.id}`}>
-                        <li>{post.title}</li>
+                        <li className="hover:underline">{post.title}</li>
                     </Link>
                 ))
             }

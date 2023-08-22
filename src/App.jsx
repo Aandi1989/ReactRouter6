@@ -4,6 +4,8 @@ import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Blog } from './pages/Blog';
 import { Singlepage } from './pages/Singlepage';
+import { Createpost } from './pages/Createpost';
+import { Editpost } from './pages/Editpost';
 import { Notfoundpage } from './pages/Notfoundpage';
 
 import { Layout } from './components/Layout'
@@ -17,6 +19,8 @@ function App() {
           <Route path="about" element={<About />} />
           <Route path="posts" element={<Blog />} />
           <Route path="posts/:id" element={<Singlepage />} />
+          <Route path="posts/:id/edit" element={<Editpost />} />
+          <Route path="posts/new" element={<Createpost />} />
           <Route path="*" element={<Notfoundpage />} />
         </Route>
       </Routes>

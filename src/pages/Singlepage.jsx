@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 export const Singlepage = () => {
@@ -15,7 +15,8 @@ export const Singlepage = () => {
         {post && (
             <>
                 <h1 className="text-2xl font-semibold mb-2 text-center py-5">{post.title}</h1>
-                <p>{post.body}</p>
+                <p className="mb-5">{post.body}</p>
+                <Link to={`/posts/${id}/edit`} className="font-semibold hover:underline">Edit this post</Link>
             </>
         )}
     </div>
