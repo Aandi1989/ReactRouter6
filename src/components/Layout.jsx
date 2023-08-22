@@ -1,12 +1,12 @@
-import { Link, Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 
 export const Layout = () => {
     return (
         <>
             <header className="text-white bg-bgColor h-16 flex justify-center items-center mb-2">
-                <Link className="mr-4 hover:underline" to="/">Home</Link>
-                <Link className="mr-4 hover:underline" to="/posts">Blog</Link>
-                <Link className="hover:underline" to="/about">About</Link>
+                <NavLink className="mr-4 hover:underline" to="/">Home</NavLink>
+                <NavLink className="mr-4 hover:underline" to="/posts">Blog</NavLink>
+                <NavLink className="hover:underline" to="/about">About</NavLink>
             </header>
             <main className="pl-2">
                 <Outlet />
