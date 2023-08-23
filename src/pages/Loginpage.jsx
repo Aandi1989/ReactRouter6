@@ -21,9 +21,9 @@ export const Loginpage = () => {
         <h1 className="text-3xl text-center">Login page</h1>
         <form onSubmit={handleSubmit}>
             <label >
-                Name: <input name="userName"/>
+                Name: <input className='border rounded-sm px-1' name="userName"/>
             </label>
-            <button type="submit">Login</button>
+            <button className='ml-2 border rounded-sm px-2 bg-gray' type="submit">Login</button>
         </form>
     </div>
   )
