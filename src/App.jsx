@@ -21,7 +21,7 @@ function App() {
         <Routes >
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="about" element={<About />} />
+            <Route path="about/*" element={<About />} />
             <Route path="about-us" element={<Navigate to="/about" replace />} />
             <Route path="posts" element={<Blog />} />
             <Route path="posts/:id" element={<Singlepage />} />
