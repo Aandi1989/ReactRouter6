@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { Home } from './pages/Home';
 import { About } from './pages/About';
@@ -17,6 +17,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
+          <Route path="about-us" element={<Navigate to="/about" replace />} />
           <Route path="posts" element={<Blog />} />
           <Route path="posts/:id" element={<Singlepage />} />
           <Route path="posts/:id/edit" element={<Editpost />} />
