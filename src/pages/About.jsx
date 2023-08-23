@@ -1,4 +1,4 @@
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes, Link, Outlet } from 'react-router-dom';
 
 const About = () => {
     return(
@@ -10,10 +10,11 @@ const About = () => {
                 <li><Link to="team">Our Team</Link></li>
             </ul>
 
-            <Routes>
+            {/* <Routes>
                 <Route path="contacts" element={<p>Our contacts</p>} />
                 <Route path="team" element={<p>Our team</p>} />
-            </Routes>
+            </Routes> */}
+            <Outlet/>
         </div>
     )
 }
