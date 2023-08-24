@@ -42,7 +42,7 @@ async function getPosts() {
 
     // if (!res.ok) {
     //     throw new Response('', { status: res.status, statusText: 'Not found' })
-    // }
+    // } /* этот способ вывода ошибки у меня не заработал */
 
     return res.json()
 }
@@ -50,7 +50,7 @@ async function getPosts() {
 const blogLoader = async () => {
     const posts = getPosts()
 
-    if(!posts.lengh){
+    if(!posts.length){
         throw json({message:'Not Found', reason:'Wrong url'}, {status: 404})
     }
 
