@@ -4,7 +4,7 @@ import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Blog, blogLoader } from './pages/Blog';
 import { Singlepage, postLoader } from './pages/Singlepage';
-import { Createpost } from './pages/Createpost';
+import { Createpost, createPostAction } from './pages/Createpost';
 import { Editpost } from './pages/Editpost';
 import { Notfoundpage } from './pages/Notfoundpage';
 import { Loginpage } from './pages/Loginpage';
@@ -30,7 +30,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       <RequireAuth>
         <Createpost />
       </RequireAuth>
-    } />
+    } action={createPostAction}  />
     <Route path="login" element={<Loginpage />} />
     <Route path="*" element={<Notfoundpage />} />
   </Route>

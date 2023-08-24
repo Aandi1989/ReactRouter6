@@ -9,7 +9,9 @@ module.exports = {
       bgColor: "#2D2B34",
       white:"#FFFFFF",
       darkcyan:"#1D7F8B",
-      gray:"#EEEDEE"
+      gray:"#EEEDEE",
+      strongGray:"#7C7C7C",
+      black:"000000",
     },
   },
   plugins: [],
