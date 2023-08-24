@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams, useLoaderData, defer, Await } from 'react-router-dom';
+import { Suspense } from "react";
 import { BlogFilter } from '../components/BlogFilter';
 
 const Blog = () => {
-    const [posts, setPosts] = useState([]);
+    const { posts } = useLoaderData();
     const [searchParams, setSearchParams] = useSearchParams();
 
     const postQuery = searchParams.get('post') || '';
@@ -11,29 +11,42 @@ const Blog = () => {
 
     const startsFrom = latest ? 80 : 1;
 
-
-    useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/posts')
-            .then(res => res.json())
-            .then(data => setPosts(data))
-    }, []);
-
     return (
-        <div >
+        <div>
             <h1 className="text-3xl text-center">Our news</h1>
-            <BlogFilter postQuery={postQuery} latest={latest} setSearchParams={setSearchParams}/>
+            <BlogFilter postQuery={postQuery} latest={latest} setSearchParams={setSearchParams} />
             <Link className="hover:underline text-lg inline-block mb-2 ml-4" to="/posts/new">Add new post</Link>
-            {
-                posts.filter(
-                    post => post.title.includes(postQuery) && post.id >= startsFrom
-                ).map(post => (
-                    <Link key={post.id} to={`/posts/${post.id}`}>
-                        <li className="hover:underline">{post.title}</li>
-                    </Link>
-                ))
-            }
+            <Suspense fallback={<h2 className='text-center font-medium text-lg'>Loading...</h2>}>
+                <Await resolve={posts}>
+                    {
+                        (resolvedPosts) => (<>
+                            {
+                                resolvedPosts.filter(
+                                    post => post.title.includes(postQuery) && post.id >= startsFrom
+                                ).map(post => (
+                                    <Link key={post.id} to={`/posts/${post.id}`}>
+                                        <li className="hover:underline">{post.title}</li>
+                                    </Link>
+                                ))
+                            }
+                        </>)
+                    }
+                </Await>
+            </Suspense>
         </div>
     )
 }
 
-export { Blog }
+async function getPosts() {
+    const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+
+    return res.json()
+}
+
+const blogLoader = async () => {
+    return defer({
+        posts: getPosts()
+    })
+}
+
+export { Blog, blogLoader }
