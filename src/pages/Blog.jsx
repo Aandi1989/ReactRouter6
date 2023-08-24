@@ -1,4 +1,4 @@
-import { Link, useSearchParams, useLoaderData, defer, Await } from 'react-router-dom';
+import { Link, useSearchParams, useLoaderData, defer, Await, json } from 'react-router-dom';
 import { Suspense } from "react";
 import { BlogFilter } from '../components/BlogFilter';
 
@@ -38,14 +38,24 @@ const Blog = () => {
 }
 
 async function getPosts() {
-    const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+    const res = await fetch('https://jsonplaceholder.typicode.com/postsss')
+
+    // if (!res.ok) {
+    //     throw new Response('', { status: res.status, statusText: 'Not found' })
+    // }
 
     return res.json()
 }
 
 const blogLoader = async () => {
+    const posts = getPosts()
+
+    if(!posts.lengh){
+        throw json({message:'Not Found', reason:'Wrong url'}, {status: 404})
+    }
+
     return defer({
-        posts: getPosts()
+        posts
     })
 }
 

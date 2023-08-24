@@ -1,4 +1,4 @@
-import { Route, Navigate, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+import { Route, Navigate, RouterProvider, createBrowserRouter, createRoutesFromElements, errorElement } from 'react-router-dom';
 
 import { Home } from './pages/Home';
 import { About } from './pages/About';
@@ -13,16 +13,17 @@ import { Layout } from './components/Layout';
 
 import { RequireAuth } from './hoc/RequireAuth';
 import { AuthProvider } from './hoc/AuthProvider';
+import ErrorPage from './pages/Errorpage';
 
 const router = createBrowserRouter(createRoutesFromElements(
-  <Route path="/" element={<Layout />}>
+  <Route path="/" element={<Layout />} >
     <Route index element={<Home />} />
     <Route path="about" element={<About />} >
       <Route path="contacts" element={<p>Our contacts</p>} />
       <Route path="team" element={<p>Our team</p>} />
     </Route>
     <Route path="about-us" element={<Navigate to="/about" replace />} />
-    <Route path="posts" element={<Blog />} loader={blogLoader} />
+    <Route path="posts" element={<Blog />} loader={blogLoader} errorElement={ <ErrorPage/> }/>
     <Route path="posts/:id" element={<Singlepage />} loader={postLoader}/>
     <Route path="posts/:id/edit" element={<Editpost />} />
     <Route path="posts/new" element={
