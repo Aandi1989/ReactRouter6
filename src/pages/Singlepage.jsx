@@ -43,7 +43,7 @@ export const Singlepage = () => {
           <Post />
         </Await>
       </Suspense>
-      <Link to={`/posts/${id}/edit`} className="font-semibold hover:underline">Edit this post</Link>
+      <Link to={`/posts/${id}/edit`}  className="font-semibold hover:underline">Edit this post</Link>
       <Suspense fallback={<h2 className='text-center font-medium text-lg'>Comments is loading...</h2>}>
         <Await resolve={comments}>
           <Comments />
